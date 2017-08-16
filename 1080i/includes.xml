@@ -73,6 +73,7 @@
 	<!-- 5802 -->
 	<include file="ViewsGames.xml"/>
 	<include file="ViewsLiveTV.xml"/>
+	<include file="CustomSetInfo.xml"/>
 	<constant name="FanartCrossFadeTime">350</constant>
 	<!-- ######################################################################### Animations ######################################################################### -->
 	<include name="Animation_Fade">

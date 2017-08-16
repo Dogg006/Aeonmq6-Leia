@@ -421,7 +421,7 @@
                 <height>180</height>
                 <align>justify</align>
                 <font>Font_18A</font>
-                <label>$INFO[Window(Home).Property(SkinHelper.ListItem.Plot)]</label>
+                <label>$INFO[Window(Home).Property(SkinHelper.ListItem.airdaytime)] [CP] $INFO[Window(Home).Property(SkinHelper.ListItem.Plot)]</label>
                 <textcolor>FFFFFAF0</textcolor>
                 <autoscroll delay="10000" time="4000" repeat="15000">!Skin.HasSetting(noinfoplotscroll)</autoscroll>
                 <visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Poster))</visible>

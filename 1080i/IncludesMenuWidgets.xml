@@ -5570,5 +5570,6 @@
 			<onup condition="Skin.HasSetting(homemq) + Skin.HasSetting(mainmenuvertical)">9000</onup>
 			<ondown condition="![Skin.HasSetting(homemq) + Skin.HasSetting(mainmenuvertical)]">9000</ondown>
 			<ondown condition="Skin.HasSetting(homemq) + Skin.HasSetting(mainmenuvertical)">512</ondown>
+			<oninfo condition="String.IsEqual(Container(9000).ListItem.Property(widgets),movie.sets)">ActivateWindow(1166)</oninfo>
 	</include>
 	</includes>
