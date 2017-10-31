@@ -359,6 +359,20 @@
                         </focusedlayout>
                         <content>
 							<item>
+                                <label>TV Show Title</label>
+                                <!-- Director -->
+                                <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.tvshowtitle)]</label2>
+                                <onclick>noop</onclick>
+								<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.tvshowtitle))</visible>
+                            </item>
+							<item>
+                                <label>Total Seasons</label>
+                                <!-- Director -->
+                                <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.totalSeasons)]</label2>
+                                <onclick>noop</onclick>
+								<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.totalSeasons))</visible>
+                            </item>
+							<item>
                                 <label>Director</label>
                                 <!-- Director -->
                                 <label2>$INFO[ListItem.Director]</label2>
@@ -793,6 +807,7 @@
                     <width>1020</width>
                     <height>760</height>
                     <pagecontrol>85</pagecontrol>
+					<oninfo condition="String.IsEqual(ListItem.DBType,set)">ActivateWindow(1166)</oninfo>
                     <onleft condition="Control.IsVisible(777)">777</onleft>
 					<onleft condition="!Control.IsVisible(777)">9900</onleft>
                     <onright condition="!Skin.HasSetting(alphabet)">85</onright>
@@ -1184,7 +1199,7 @@
                         <width>368</width>
                         <height>525</height>
                         <fadetime>FanartCrossFadeTime</fadetime>
-                        <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                        <aspectratio align="center" aligny="top">keep</aspectratio>
                         <imagepath>http://localhost:52307/getthumb&amp;title=$ESCINFO[ListItem.Label]</imagepath>
                         <visible>Container.Content(directors)</visible>
                     </control>

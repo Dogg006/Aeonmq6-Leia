@@ -1855,7 +1855,7 @@
 			<control type="group">
 				<!-- modern case  -->
 				<top>195</top>
-				<animation effect="zoom" center="0,372" start="100" end="220" time="500" tween="cubic" easing="out" reversible="false">Focus</animation>
+				<animation effect="zoom" center="0,372" start="100" end="220" time="500" tween="cubic" easing="out" reversible="false" condition="true">Conditional</animation>
 				<animation type="Focus" reversible="false" condition="true">
 					<effect type="slide" start="0,0" end="30,0" time="500" delay="1000" tween="cubic" easing="out"/>
 					<effect type="fade" start="0" end="100" time="300" delay="1000"/>
@@ -1978,7 +1978,7 @@
 			<control type="group">
 				<!-- modern case  -->
 				<top>195</top>
-				<animation effect="zoom" center="0,372" start="100" end="220" time="500" tween="cubic" easing="out" reversible="false">Focus</animation>
+				<animation effect="zoom" center="0,372" start="100" end="220" time="500" tween="cubic" easing="out" reversible="false" condition="true">Conditional</animation>
 				<animation type="Focus" reversible="false" condition="true">
 					<effect type="slide" start="0,0" end="30,0" time="500" delay="1000" tween="cubic" easing="out"/>
 					<effect type="fade" start="0" end="100" time="300" delay="1000"/>
@@ -3939,7 +3939,7 @@
 				<width>420</width>
 				<height>420</height>
 				<aspectratio align="center">keep</aspectratio>
-				<texture background="true">$INFO[Window(Weather).Property(Current.ConditionIcon)]</texture>
+				<texture background="true">$INFO[skin.string(CustomWeatherIconFolder)]$INFO[Window(Weather).Property(Current.OutlookIcon)]</texture>
 				<colordiffuse>95FFFFFF</colordiffuse>
 				<visible>!Skin.HasSetting(weathericons)</visible>
 			</control>
@@ -3949,7 +3949,7 @@
 				<width>420</width>
 				<height>420</height>
 				<aspectratio align="center">keep</aspectratio>
-				<imagepath>$VAR[value_weathericons]$INFO[Weather.FanartCode]/</imagepath>
+				<imagepath>$VAR[value_weathericons]$INFO[Window(Weather).Property(Current.FanartCode)]</imagepath>
 				<timeperimage>175</timeperimage>
 				<randomize>false</randomize>
 				<fadetime>0</fadetime>
@@ -5570,6 +5570,5 @@
 			<onup condition="Skin.HasSetting(homemq) + Skin.HasSetting(mainmenuvertical)">9000</onup>
 			<ondown condition="![Skin.HasSetting(homemq) + Skin.HasSetting(mainmenuvertical)]">9000</ondown>
 			<ondown condition="Skin.HasSetting(homemq) + Skin.HasSetting(mainmenuvertical)">512</ondown>
-			<oninfo condition="String.IsEqual(Container(9000).ListItem.Property(widgets),movie.sets)">ActivateWindow(1166)</oninfo>
 	</include>
 	</includes>

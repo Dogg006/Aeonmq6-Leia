@@ -743,7 +743,6 @@
                             <label>YouTube</label>
                             <onclick>RunScript(script.extendedinfo,info=youtubebrowser,id=$INFO[ListItem.Title])</onclick>
                         </item>
-
                     </content>
                 </control>
                 <control type="image">
