@@ -337,6 +337,7 @@
 	</variable>
 	<!--############################################################################### TEXTURAS ###############################################################################-->
 	<variable name="value_texturecolor">
+		<value condition="String.IsEqual(Container.Viewmode,AEON)">$VAR[MusicVisColor]</value>
 		<value condition="String.Contains(skin.string(colortexture),nocolor)">FFFFFFFF</value>
 		<!-- nocolor -->
 		<value condition="String.Contains(skin.string(colortexture),lightblue)">FFADD8E6</value>
@@ -4117,7 +4118,7 @@ Ultra)]">$INFO[VideoPlayer.VideoCodec,flags/casecodec/,.png]</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),channel.epg)">pvr://channels/tv/*?</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),channel.reacent)">pvr://channels/tv/*?view=lastplayed</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),channel.radio)">pvr://channels/radio/*?</value>
-		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),addons.programs)">addons://user/all/</value>
+		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),addons.programs)">addons://running/</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),addons.android)">androidapp://sources/apps/</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),addons.video)">addons://sources/video/</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),addons.audio)">addons://sources/audio/</value>
@@ -4142,7 +4143,7 @@ Ultra)]">$INFO[VideoPlayer.VideoCodec,flags/casecodec/,.png]</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),extras.trendingshows)">plugin://script.extendedinfo?info=trendingshows</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),extras.populartvshows)">plugin://script.extendedinfo?info=populartvshows</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),extras.traktsimilarmovies)">plugin://script.extendedinfo?info=starredtvshows</value>
-		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),extras.traktsimilartvshows)">plugin://script.extendedinfo?info=traktsimilartvshows</value>
+		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),extras.traktsimilartvshows)">plugin://script.skin.helper.widgets/?action=browsegenres&mediatype=movies&limit=1000</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),extras.airingepisodes)">plugin://script.extendedinfo?info=airingepisodes</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(widgets),extras.mostplayedroms)">plugin://plugin.video.youtube/special/popular_right_now/</value>
 	</variable>
@@ -4667,7 +4668,7 @@ Ultra)]">$INFO[VideoPlayer.VideoCodec,flags/casecodec/,.png]</value>
 		<value condition="Container.Content(movies)+!String.Contains(ListItem.Path,videodb://movies/sets)">plugin://script.skin.helper.service/?action=getcast&amp;movie=$INFO[ListItem.Title]&amp;downloadthumbs=true&amp;castaction=extendedinfo</value>
 		<value condition="!String.IsEmpty(ListItem.TVShowTitle)">plugin://script.skin.helper.service/?action=getcast&amp;tvshow=$INFO[ListItem.TVShowTitle]&amp;downloadthumbs=true&amp;castaction=extendedinfo</value>
 		<value condition="String.Contains(ListItem.Path,videodb://movies/sets)">plugin://script.skin.helper.service/?action=getcast&amp;movieset=$INFO[ListItem.Title]&amp;downloadthumbs=true&amp;castaction=extendedinfo</value>
-		<value condition="String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.media_type))+!Container.Content(artists)">plugin://script.skin.helper.service/?action=getcast&amp;tvshow=$INFO[ListItem.Title]&amp;downloadthumbs=true&amp;castaction=extendedinfo</value>
+		<value condition="String.IsEqual(Window(Home).Property(SkinHelper.ListItem.media_type),tvshow)+!Container.Content(artists)">plugin://script.skin.helper.service/?action=getcast&amp;tvshow=$INFO[ListItem.Title]&amp;downloadthumbs=true&amp;castaction=extendedinfo</value>
 	</variable>
 	<variable name="value_mainmenubg_preview">
 		<value condition="Control.HasFocus(9100) + Container(9100).HasFocus(22)">special://skin/backgrounds/</value>
@@ -6649,14 +6650,14 @@ Ultra)]">$INFO[VideoPlayer.VideoCodec,flags/casecodec/,.png]</value>
 	<variable name="value_discography_title">
 		<value condition="!Window.IsActive(visualisation) + [Container.Content(artists) | Container.Content(albums)|Container.Content(songs)]">$INFO[ListItem.Artist]</value>
 		<value condition="Window.IsActive(Home)">$INFO[Container(510).ListItem.Artist]</value>
-		<value condition="!Player.IsInternetStream+Window.IsActive(visualisation)">$INFO[MusicPlayer.Artist]</value>
-		<value condition="Player.IsInternetStream+Window.IsActive(visualisation)">$INFO[Window(Home).Property(SkinHelper.Player.Artist)]</value>
+		<value condition="![Player.IsInternetStream | Pvr.IsPlayingRadio]+Window.IsActive(visualisation)">$INFO[MusicPlayer.Artist]</value>
+		<value condition="[Player.IsInternetStream | Pvr.IsPlayingRadio]+Window.IsActive(visualisation)">$INFO[Window(Home).Property(SkinHelper.Player.Artist)]</value>
 	</variable>
 	<variable name="value_music_title">
 		<value condition="!Window.IsActive(visualisation) + [Container.Content(artists) | Container.Content(albums)] + [Window.Is(songinformation) | Window.IsActive(musicinformation) | String.IsEqual(Container.Viewmode,RIGHT LIST)  | String.IsEqual(Container.Viewmode,POSTER) | String.IsEqual(Container.Viewmode,WALL) | String.IsEqual(Container.Viewmode,COVERFLOW) | String.IsEqual(Container.Viewmode,PANEL) | String.IsEqual(Container.Viewmode,CowerFlowandBack)]">$INFO[ListItem.Artist]</value>
 		<value condition="!Window.IsActive(visualisation) + Container.Content(songs) + [Window.Is(musicinformation) | String.IsEqual(Container.Viewmode,RIGHT LIST)  | String.IsEqual(Container.Viewmode,POSTER) | String.IsEqual(Container.Viewmode,WALL) | String.IsEqual(Container.Viewmode,COVERFLOW) | String.IsEqual(Container.Viewmode,PANEL) | Window.IsActive(songinformation)]">$INFO[ListItem.Label]</value>
-		<value condition="!Player.IsInternetStream+Window.IsActive(visualisation)">$INFO[MusicPlayer.Artist]</value>
-		<value condition="Player.IsInternetStream+Window.IsActive(visualisation)">$INFO[Window(Home).Property(SkinHelper.Player.Artist)]</value>
+		<value condition="![Player.IsInternetStream | Pvr.IsPlayingRadio]+Window.IsActive(visualisation)">$INFO[MusicPlayer.Artist]</value>
+		<value condition="[Player.IsInternetStream | Pvr.IsPlayingRadio]+Window.IsActive(visualisation)">$INFO[Window(Home).Property(SkinHelper.Player.Artist)]</value>
 	</variable>
 	<variable name="value_music_subtitle">
 		<value condition="!Window.IsActive(visualisation)+![Window.Is(musicinformation)|Window.Is(songinformation)]+Container.Content(albums) + [String.IsEqual(Container.Viewmode,POSTER)  | String.IsEqual(Container.Viewmode,RIGHT LIST) | String.IsEqual(Container.Viewmode,WALL) | String.IsEqual(Container.Viewmode,COVERFLOW) | String.IsEqual(Container.Viewmode,PANEL) | Window.IsActive(musicinformation)]">$INFO[ListItem.Label]</value>
@@ -7404,8 +7405,9 @@ Ultra)]">$INFO[VideoPlayer.VideoCodec,flags/casecodec/,.png]</value>
 	<value condition="Skin.HasSetting(mainmenuvertical)">   -Vertical</value>
 	</variable>
 	<variable name="studio_values">	
-	<value condition="String.IsEmpty(resource://resource.images.studios.coloured/$INFO(ListItem.Studio).png)">$INFO[ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
-	<value condition="!String.IsEmpty(resource://resource.images.studios.coloured/$INFO(ListItem.Studio).png)">blanc.png</value>	
+	<value condition="!String.IsEmpty(ListItem.Studio)">$INFO[ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
+	<value condition="String.IsEmpty(ListItem.Studio)">$INFO[Window(Home).Property(SkinHelper.ListItem.Studio),resource://resource.images.studios.coloured/,.png]</value>	
+	<value>blanc.png</value>
 	</variable>
 	<variable name="value_widgetsstudio">
 	<value condition="!String.Contains(Container(510).ListItem.Path,videodb://movies/sets)">resource://resource.images.studios.coloured/$INFO[Container(510).ListItem.Studio,,.png]</value>
@@ -7496,83 +7498,43 @@ Ultra)]">$INFO[VideoPlayer.VideoCodec,flags/casecodec/,.png]</value>
 	<variable name="value_lyrics_no">
 	<value>1</value>
 	</variable>
-	<variable name="value_gs_label">
-		<value condition="Control.HasFocus(111)">$INFO[Container(111).ListItem.Label]</value>
-		<value condition="Control.HasFocus(121)">$INFO[Container(121).ListItem.Label]</value>
-		<value condition="Control.HasFocus(141)">$INFO[Container(141).ListItem.Label]</value>
-		<value condition="Control.HasFocus(151)">$INFO[Container(151).ListItem.Label]</value>
-		<value condition="Control.HasFocus(161)">$INFO[Container(161).ListItem.Label]</value>
-		<value condition="Control.HasFocus(171)">$INFO[Container(171).ListItem.Label]</value>
-		<value condition="Control.HasFocus(181)">$INFO[Container(181).ListItem.Label]</value>
-		<value condition="Control.HasFocus(191)">$INFO[Container(191).ListItem.Label]</value>
-		<value condition="Control.HasFocus(201)">$INFO[Container(201).ListItem.Label]</value>
-		<value condition="Control.HasFocus(211)">$INFO[Container(211).ListItem.Label]</value>
-	</variable>
 	<variable name="value_gs_info">
-		<value condition="Control.HasFocus(111)">[B]$INFO[Container(111).ListItem.Year,, / ][/B]$INFO[Container(111).ListItem.duration,, min /] $INFO[Container(111).ListItem.Genre,, /] $INFO[Container(111).ListItem.studio,, /]$INFO[Container(111).ListItem.rating,, / ]</value>	
-		<value condition="Control.HasFocus(121)">[B]$INFO[Container(121).ListItem.Premiered,, / ][/B]$INFO[Container(121).ListItem.duration,, min /] $INFO[Container(121).ListItem.Genre,, /] $INFO[Container(121).ListItem.studio,, /]$INFO[Container(121).ListItem.rating, , ]</value>	
-		<value condition="Control.HasFocus(141)">[B]$INFO[Container(141).ListItem.TvShowTitle,, / ][/B][B]$INFO[Container(141).ListItem.Premiered,, / ][/B]$INFO[Container(141).ListItem.duration,, min /] $INFO[Container(141).ListItem.Genre,, /] $INFO[Container(141).ListItem.studio,, /]$INFO[Container(141).ListItem.rating, , ]</value>	
-		<value condition="Control.HasFocus(151)">[B]$INFO[Container(151).ListItem.Year,, / ][/B]$INFO[Container(151).ListItem.Album,, / ]$INFO[Container(151).ListItem.Artist,, / ]$INFO[Container(151).ListItem.Duration,, min]</value>
-		<value condition="Control.HasFocus(161)">$INFO[Container(161).ListItem.Property(Artist_Mood),, / ]$INFO[Container(161).ListItem.Property(Artist_Style)]</value>
-		<value condition="Control.HasFocus(171)">[B]$INFO[Container(171).ListItem.Year,, / ][/B]$INFO[Container(171).ListItem.Artist,, / ]$INFO[Container(171).ListItem.Property(Album_Theme),, / ]$INFO[Container(171).ListItem.Property(Album_Style),, / ]$INFO[Container(171).ListItem.Property(Album_Rating)]</value>
-		<value condition="Control.HasFocus(181)">[B]$INFO[Container(181).ListItem.Year,, / ][/B]$INFO[Container(181).ListItem.Artist,, / ]$INFO[Container(181).ListItem.Album,, / ]</value>
-		<value condition="Control.HasFocus(191)">[B]$INFO[Container(191).ListItem.Property(Starttime),, - ][/B]$INFO[Container(191).ListItem.Property(Endtime)]</value>
-		<value condition="Control.HasFocus(201)">[B]$INFO[Container(201).ListItem.Year,, / ][/B]$INFO[Container(201).ListItem.duration,, min /] $INFO[Container(201).ListItem.Genre,, /] $INFO[Container(201).ListItem.studio,, /]$INFO[Container(201).ListItem.rating,, / ]</value>	
-		<value condition="Control.HasFocus(211)">[B]$INFO[Container(211).ListItem.Year,, / ][/B]$INFO[Container(211).ListItem.duration,, min /] $INFO[Container(211).ListItem.Genre,, /] $INFO[Container(211).ListItem.studio,, /]$INFO[Container(211).ListItem.rating,, / ]</value>	
+		<value condition="Container.Content(movies)">[B]$INFO[ListItem.Year,, / ][/B]$INFO[ListItem.duration,, min /] $INFO[ListItem.Genre,, /] $INFO[ListItem.studio,, /]$INFO[ListItem.rating,, / ]</value>	
+		<value condition="Container.Content(tvshows)">[B]$INFO[ListItem.Premiered,, / ][/B]$INFO[ListItem.duration,, min /] $INFO[ListItem.Genre,, /] $INFO[ListItem.studio,, /]$INFO[ListItem.rating, , ]</value>	
+		<value condition="Container.Content(seasons)|Container.Content(episodes)">[B]$INFO[ListItem.TvShowTitle,, / ][/B][B]$INFO[ListItem.Premiered,, / ][/B]$INFO[ListItem.duration,, min /] $INFO[ListItem.Genre,, /] $INFO[ListItem.studio,, /]$INFO[ListItem.rating, , ]</value>	
+		<value condition="Container.Content(musicvideos)">[B]$INFO[ListItem.Year,, / ][/B]$INFO[ListItem.Album,, / ]$INFO[ListItem.Artist,, / ]$INFO[ListItem.Duration,, min]</value>
+		<value condition="Container.Content(artists)">$INFO[ListItem.Property(Artist_Mood),, / ]$INFO[ListItem.Property(Artist_Style)]</value>
+		<value condition="Container.Content(albums)">[B]$INFO[ListItem.Year,, / ][/B]$INFO[ListItem.Artist,, / ]$INFO[ListItem.Property(Album_Theme),, / ]$INFO[ListItem.Property(Album_Style),, / ]$INFO[ListItem.Property(Album_Rating)]</value>
+		<value condition="Container.Content(songs)">[B]$INFO[ListItem.Year,, / ][/B]$INFO[ListItem.Artist,, / ]$INFO[ListItem.Album,, / ]</value>
+		<value condition="Container.Content(epg)">[B]$INFO[ListItem.Property(Starttime),, - ][/B]$INFO[ListItem.Property(Endtime)]</value>
 		</variable>
 	<variable name="value_gs_dirwr">
-		<value condition="Control.HasFocus(111)">$INFO[Container(111).ListItem.Director,, / ]$INFO[Container(111).ListItem.writer]</value>
-		<value condition="Control.HasFocus(141)">$INFO[Container(141).ListItem.Director]</value>
-		<value condition="Control.HasFocus(151)">$INFO[Container(151).ListItem.Genre]</value>
-		<value condition="Control.HasFocus(161)">$INFO[Container(161).ListItem.Property(Artist_Genre)]</value>
-		<value condition="Control.HasFocus(171)">$INFO[Container(171).ListItem.Genre]</value>
-		<value condition="Control.HasFocus(181)">$INFO[Container(181).ListItem.Genre]</value>
-		<value condition="Control.HasFocus(191)">$INFO[Container(191).ListItem.Property(ChannelName),, / ]$INFO[Container(191).ListItem.Property(Duration),, min - ]$INFO[Container(191).ListItem.Property(Genre)]</value>
-		<value condition="Control.HasFocus(201)">$INFO[Container(201).ListItem.Director,, / ]$INFO[Container(201).ListItem.writer]</value>
-		<value condition="Control.HasFocus(211)">$INFO[Container(211).ListItem.Director,, / ]$INFO[Container(211).ListItem.writer]</value>
+		<value condition="Container.Content(movies)">$INFO[ListItem.Director,, / ]$INFO[ListItem.writer]</value>
+		<value condition="Container.Content(tvshows)|Container.Content(seasons)|Container.Content(episodes)">$INFO[ListItem.Director]</value>
+		<value condition="Container.Content(musicvideos)">$INFO[ListItem.Genre]</value>
+		<value condition="Container.Content(artists)">$INFO[ListItem.Property(Artist_Genre)]</value>
+		<value condition="Container.Content(albums)">$INFO[ListItem.Genre]</value>
+		<value condition="Container.Content(songs)">$INFO[ListItem.Genre]</value>
+		<value condition="Container.Content(epg)">$INFO[ListItem.Property(ChannelName),, / ]$INFO[ListItem.Property(Duration),, min - ]$INFO[ListItem.Property(Genre)]</value>
 		</variable>
 	<variable name="value_gs_dirwr0">
-		<value condition="Control.HasFocus(111)">$INFO[Container(111).ListItem.Property(DBID)]</value>
-		<value condition="Control.HasFocus(141)">$INFO[Container(141).ListItem.Property(DBID)]</value>
-		<value condition="Control.HasFocus(151)">$INFO[Container(151).ListItem.Property(DBID)]</value>
-		<value condition="Control.HasFocus(161)">$INFO[Container(161).ListItem.Property(DBID)]</value>
-		<value condition="Control.HasFocus(171)">$INFO[Container(171).ListItem.Property(DBID)]</value>
-		<value condition="Control.HasFocus(181)">$INFO[Container(181).ListItem.Property(DBID)]</value>
-		<value condition="Control.HasFocus(191)">$INFO[Container(191).ListItem.Property(DBID)]</value>
-		<value condition="Control.HasFocus(201)">$INFO[Container(201).ListItem.Property(DBID)]</value>
-		<value condition="Control.HasFocus(211)">$INFO[Container(211).ListItem.Property(DBID)]</value>
+		<value>$INFO[ListItem.Property(DBID)]</value>
 		</variable>
 	<variable name="value_gs_fanart">
-		<value condition="Control.HasFocus(111)">$INFO[Container(111).ListItem.Art(fanart)]</value>
-		<value condition="Control.HasFocus(121)">$INFO[Container(121).ListItem.Art(fanart)]</value>
-		<value condition="Control.HasFocus(141)">$INFO[Container(141).ListItem.Art(tvshow.fanart)]</value>
-		<value condition="Control.HasFocus(151)">$INFO[Container(151).ListItem.Art(fanart)]</value>
-		<value condition="Control.HasFocus(161)">$INFO[Container(161).ListItem.Art(fanart)]</value>
-		<value condition="Control.HasFocus(171)">$INFO[Container(171).ListItem.Art(fanart)]</value>
-		<value condition="Control.HasFocus(181)">$INFO[Container(181).ListItem.Art(fanart)]</value>
-		<value condition="Control.HasFocus(191)">$INFO[Container(191).ListItem.Art(Icon)]</value>
-		<value condition="Control.HasFocus(201)">$INFO[Container(201).ListItem.Art(fanart)]</value>
-		<value condition="Control.HasFocus(211)">$INFO[Container(211).ListItem.Art(fanart)]</value>
+		<value condition="Container.Content(movies)|Container.Content(tvshows)|Container.Content(musicvideos)|Container.Content(artists)|Container.Content(albums)|Container.Content(songs)">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="Container.Content(seasons)|Container.Content(episodes)">$INFO[ListItem.Art(tvshow.fanart)]</value>
+		<value condition="Container.Content(epg)">$INFO[ListItem.Art(Icon)]</value>
 		</variable>
 	<variable name="value_gs_clearlogo">
-		<value condition="Control.HasFocus(111)">$INFO[Container(111).ListItem.Art(clearlogo)]</value>
-		<value condition="Control.HasFocus(121)">$INFO[Container(121).ListItem.Art(clearlogo)]</value>
-		<value condition="Control.HasFocus(141)">$INFO[Container(141).ListItem.Art(tvshow.clearlogo)]</value>
-		<value condition="Control.HasFocus(151)">$INFO[Container(151).ListItem.Art(clearlogo)]</value>
-		<value condition="Control.HasFocus(201)">$INFO[Container(201).ListItem.Art(clearlogo)]</value>
-		<value condition="Control.HasFocus(211)">$INFO[Container(211).ListItem.Art(clearlogo)]</value>
+		<value condition="Container.Content(movies)|Container.Content(tvshows)|Container.Content(musicvideos)">$INFO[ListItem.Art(clearlogo)]</value>
+		<value condition="Container.Content(seasons)|Container.Content(episodes)">$INFO[ListItem.Art(tvshow.clearlogo)]</value>
+		<value condition="Container.Content(musicvideos)|Container.Content(artists)|Container.Content(albums)|Container.Content(songs)|Container.Content(epg)">$INFO[Window(home).Property(SkinHelper.ListItem.Art.ClearLogo)]</value>
 		</variable>
 	<variable name="value_gs_plot">
-		<value condition="Control.HasFocus(111)">$INFO[Container(111).ListItem.Plot]</value>
-		<value condition="Control.HasFocus(121)">$INFO[Container(121).ListItem.Plot]</value>
-		<value condition="Control.HasFocus(141)">$INFO[Container(141).ListItem.Plot]</value>
-		<value condition="Control.HasFocus(151)">$INFO[Container(151).ListItem.Plot]</value>
-		<value condition="Control.HasFocus(161)">$INFO[Container(161).ListItem.Property(Artist_Description)]</value>
-		<value condition="Control.HasFocus(171)">$INFO[Container(171).ListItem.Property(Album_Description)]</value>
-		<value condition="Control.HasFocus(181)">$INFO[Container(181).ListItem.Playcount,, / ] $INFO[Container(181).ListItem.Comment]</value>
-		<value condition="Control.HasFocus(191)">$INFO[Container(191).ListItem.Property(Plot)]</value>		
-		<value condition="Control.HasFocus(201)">$INFO[Container(201).ListItem.Plot]</value>
-		<value condition="Control.HasFocus(211)">$INFO[Container(211).ListItem.Plot]</value>
+		<value condition="Container.Content(movies)|Container.Content(tvshows)|Container.Content(seasons)|Container.Content(episodes)|Container.Content(epg)">$INFO[ListItem.Plot]</value>
+		<value condition="Container.Content(artists)">$INFO[ListItem.Property(Artist_Description)]</value>
+		<value condition="Container.Content(albums)|Container.Content(songs)">$INFO[ListItem.Property(Album_Description)]</value>
+		<value>$INFO[ListItem.Playcount,, / ] $INFO[ListItem.Comment]</value>	
 		</variable>
 	<variable name="value_addon_image">
 		<value condition="Control.HasFocus(220)">special://home/addons/script.extendedinfo/resources/icon.png</value>
@@ -7588,6 +7550,10 @@ Ultra)]">$INFO[VideoPlayer.VideoCodec,flags/casecodec/,.png]</value>
 		<value condition="Control.HasFocus(241)">special://home/addons/service.library.data.provider/resources/icon.png</value>
 		<value condition="Control.HasFocus(243)">special://home/addons/script.tvtunes/icon.png</value>
 		<value condition="Control.HasFocus(245)">special://home/addons/script.cu.lrclyrics/icon.png</value>
+		<value condition="Control.HasFocus(247)">special://home/addons/script.playalbum/icon.png</value>
+		<value condition="Control.HasFocus(249)">special://home/addons/script.module.autocompletion/icon.png</value>
+		<value condition="Control.HasFocus(251)">special://home/addons/script.colorbox/resources/icon.png</value>
+		<value condition="Control.HasFocus(253)">special://home/addons/script.cu.lrclyrics/icon.png</value>
 	</variable>
 	<variable name="value_dialog_list">
 		<value condition="Container.Content(musicvideos)">plugin://script.extendedinfo?info=discography&amp;&amp;artistname=$INFO[ListItem.Artist]</value>
@@ -7606,11 +7572,10 @@ Ultra)]">$INFO[VideoPlayer.VideoCodec,flags/casecodec/,.png]</value>
 	</variable>
 	<variable name="MusicVisCColor">
 		<value condition="!String.IsEmpty(Window(Home).Property(ImageCColorFIVE))">$INFO[Window(Home).Property(ImageCColorFIVE)]</value>
-		<value condition="String.IsEmpty(Window(Home).Property(ImageCColorFIVE))">$VAR[value_headercolor]</value>
+
 	</variable>
 	<variable name="MusicVisColor">
 		<value condition="!String.IsEmpty(Window(Home).Property(ImageColorFIVE))">$INFO[Window(Home).Property(ImageColorFIVE)]</value>
-		<value condition="String.IsEmpty(Window(Home).Property(ImageColorFIVE))">white</value>
 	</variable>
 	<variable name="MusicVisFont">
 	<value condition="String.Contains(Window(Home).Property(SkinHelper.Player.Genre),country)">13</value>
