@@ -95,6 +95,14 @@
 				<textcolor>$VAR[value_texturecolor]</textcolor>
 				<aligny>center</aligny>
 			</control>
+			<control type="image" id="752">
+				<top>-210</top>
+				<left>1530</left>
+				<width>358</width>
+				<height>200</height>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<texture>http://localhost:52307/getthumb&amp;title=$ESCINFO[VideoPlayer.Title]</texture>
+			</control>
 	<!--		<control type="image" id="753">
 				<top>36</top>
 				<left>1130</left>

@@ -179,22 +179,8 @@
                 <align>left</align>
                 <aligny>center</aligny>
                 <font>Font_24A</font>
-                <label>$INFO[Window(Home).Property(SkinHelper.ListItem.Year)]</label>
-                <textcolor>FFFFFAF0</textcolor>
-				<visible>String.Contains(ListItem.Path,videodb://movies/sets)</visible>
-            </control>
-            <control type="label">
-                <!-- Year -->
-                <left>330</left>
-                <top>120</top>
-                <height>60</height>
-                <width>165</width>
-                <align>left</align>
-                <aligny>center</aligny>
-                <font>Font_24A</font>
                 <label>$INFO[ListItem.Year]</label>
                 <textcolor>FFFFFAF0</textcolor>
-				<visible>!String.Contains(ListItem.Path,videodb://movies/sets)</visible>
             </control>
             <control type="label">
                 <!-- My Rating -->
@@ -312,153 +298,212 @@
                     </control>
                 </focusedlayout>
                 <content>
-                    <item>
-                        <label>$VAR[value_videoinfo_label1]</label>
-                        <!-- Original Title/Movies - Premiered/TvShows -->
-                        <label2>$VAR[value_videoinfo_value1]$INFO[ListItem.Status, / ,]</label2>
-                        <onclick>noop</onclick>
-						<visible>!String.Contains(ListItem.Path,videodb://movies/sets)</visible>
-                    </item>
-                    <item>
-                        <label>$LOCALIZE[574]</label>
-                        <!-- Country -->
-                        <label2>$INFO[ListItem.Country]</label2>
-                        <onclick>noop</onclick>
-						<visible>!String.IsEmpty(ListItem.Country)</visible>
-                    </item>
-                    <item>
-                        <label>$LOCALIZE[20339]/$LOCALIZE[20417]</label>
-                        <!-- Director/Written -->
-                        <label2>$INFO[ListItem.Director]$INFO[ListItem.Writer,[COLOR=FF004666] / [/COLOR]]</label2>
-                        <onclick>SendClick(2003,13)</onclick>
-						<visible>!String.Contains(ListItem.Path,videodb://movies/sets)+!String.IsEmpty(ListItem.Director)</visible>
-                    </item>
-                    <item>
-                        <label>$LOCALIZE[572]</label>
-                        <!-- Studios -->
-                        <label2>$INFO[ListItem.Studio]</label2>
-                        <onclick>noop</onclick>
-                        <visible>!String.IsEmpty(ListItem.Studio)</visible>
-                    </item>
-                    <item>
-                        <label>$LOCALIZE[572]</label>
-                        <!-- Studios -->
-                        <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Studio)]</label2>
-                        <onclick>noop</onclick>
-                        <visible>String.IsEmpty(ListItem.Studio)+!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Studio))</visible>
-                    </item>
-                    <item>
-                        <label>$LOCALIZE[180]</label>
-                        <!-- Duration -->
-                        <label2>$VAR[value_videoinfo_value5]</label2>
-                        <onclick>noop</onclick>
-                        <visible>!String.IsEmpty(ListItem.Duration)</visible>
-                    </item>
-                    <item>
-                        <label>31179</label>
-                        <!-- Audio Language -->
-                        <label2>$INFO[Window.Property(AudioLanguage.1)]$INFO[Window.Property(AudioLanguage.2), / ]$INFO[Window.Property(AudioLanguage.3), / ]$INFO[Window.Property(AudioLanguage.4), / ]$INFO[Window.Property(AudioLanguage.5), / ]$INFO[Window.Property(AudioLanguage.6), / ]$INFO[Window.Property(AudioLanguage.7), / ]$INFO[Window.Property(AudioLanguage.8), / ]$INFO[Window.Property(AudioLanguage.9), / ]$INFO[Window.Property(AudioLanguage.10), / ]</label2>
-                        <onclick>noop</onclick>
-                        <visible>!String.IsEmpty(Window.Property(AudioLanguage.1))</visible>
-                    </item>
-                    <item>
-                        <label>$LOCALIZE[287]</label>
-                        <!-- Subtitile Language -->
-                        <label2>$INFO[Window.Property(SubtitleLanguage.1)]$INFO[Window.Property(SubtitleLanguage.2), / ]$INFO[Window.Property(SubtitleLanguage.3), / ]$INFO[Window.Property(SubtitleLanguage.4), / ]$INFO[Window.Property(SubtitleLanguage.5), / ]$INFO[Window.Property(SubtitleLanguage.6), / ]$INFO[Window.Property(SubtitleLanguage.7), / ]$INFO[Window.Property(SubtitleLanguage.8), / ]$INFO[Window.Property(SubtitleLanguage.9), / ]$INFO[Window.Property(SubtitleLanguage.10), / ]</label2>
-                        <onclick>noop</onclick>
-                        <visible>!String.IsEmpty(Window.Property(SubtitleLanguage.1))</visible>
-                    </item>
-                    <item>
-                        <label>$LOCALIZE[573]</label>
-                        <!-- Path -->
-                        <label2>$INFO[ListItem.FilenameAndPath]</label2>
-                        <onclick>noop</onclick>
-                        <visible>!String.IsEmpty(ListItem.FilenameAndPath)+!Container.Content(episodes)</visible>
-                    </item>
-  <!--                  <item>
-                        <label>RT.Meter</label>
-                        <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.Meter)]</label2>
-                        <onclick>noop</onclick>
-                        <visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.Meter))</visible>
-                    </item> -->
-					<item>
-                        <label>No:</label>
-                        <!-- Title -->
-                        <label2>Total movies $INFO[Window(Home).Property(SkinHelper.ListItem.Count)] UnWatched Count: $INFO[Window(Home).Property(SkinHelper.ListItem.UnWatchedCount)] </label2>
-                        <onclick>noop</onclick>
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Count))</visible>
-                    </item>	
-                            <item>
-                                <label>Awards</label>
-                                <!-- Awards -->
-                                <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Awards)]</label2>
-                                <onclick>noop</onclick>
-								<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Awards))</visible>
-                            </item>
-                            <item>
-                                <label>BoxOffice</label>
-                                <!-- BoxOffice -->
-                                <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.BoxOffice)]</label2>
-                                <onclick>noop</onclick>
-								<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.BoxOffice))</visible>
-                            </item>
-					<item>
-                        <label>Writer</label>
-                        <!-- Writer -->
-                        <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Writer)]</label2>
-                        <onclick>noop</onclick>
-                        <visible>String.Contains(ListItem.Path,videodb://movies/sets)</visible>
-                    </item>
-					<item>
-                        <label>Genre</label>
-                        <!-- Genre -->
-                        <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Genre)]</label2>
-                        <onclick>noop</onclick>
-                        <visible>String.Contains(ListItem.Path,videodb://movies/sets)</visible>
-                    </item>
-					<item>
-                        <label>Country</label>
-                        <!-- Country -->
-                        <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Country)]</label2>
-                        <onclick>noop</onclick>
-                        <visible>String.Contains(ListItem.Path,videodb://movies/sets)</visible>
-                    </item>
-					<item>
-                        <label>Years</label>
-                        <!-- Years -->
-                        <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Years)]</label2>
-                        <onclick>noop</onclick>
-                        <visible>String.Contains(ListItem.Path,videodb://movies/sets)</visible>
-                    </item>
-							<item>
-                                <label>NextEpisode</label>
-                                <!-- NextEpisode.Label -->
-                                <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.NextEpisode.Label)]</label2>
-                                <onclick>noop</onclick>
-								<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.NextEpisode.Label))+Container.Content(episodes)</visible>
-                            </item>
-							<item>
-                                <label>NextEpisode.Airdate</label>
-                                <!-- NextEpisode.Airdate -->
-                                <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Airday),(,)] $INFO[Window(Home).Property(SkinHelper.ListItem.NextEpisode.Airdate)]</label2>
-                                <onclick>noop</onclick>
-								<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.NextEpisode.Airdate))+Container.Content(episodes)</visible>
-                            </item>
-							<item>
-                                <label>LastEpisode</label>
-                                <!-- LastEpisode.Title -->
-                                <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.LastEpisode.Title)] $INFO[Window(Home).Property(SkinHelper.ListItem.LastEpisode.Airdate),(,)]</label2>
-                                <onclick>noop</onclick>
-								<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.LastEpisode.Title))+Container.Content(episodes)</visible>
-                            </item>
-                            <item>
-                                <label>LastEpisode.GuestStars</label>
-                                <!-- LastEpisode.GuestStars -->
-                                <label2>$INFO[Window(Home).Property(SkinHelper.ListItem.LastEpisode.GuestStars)]</label2>
-                                <onclick>noop</onclick>
-								<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.LastEpisode.GuestStars))+Container.Content(episodes)</visible>
-                            </item>
+	<item>
+	<label>Director</label>
+	<!-- Director -->
+	<label2>$INFO[ListItem.Director]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(ListItem.Director)</visible>
+	</item>
+	<item>
+	<label>Director</label>
+	<!-- Director -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Director)]</label2>
+	<onclick>noop</onclick>
+	<visible>String.IsEmpty(ListItem.Director)+!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Director))</visible>
+	</item>
+	<item>
+	<label>Writer</label>
+	<!-- Writer -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Writer)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Writer))</visible>
+	</item>
+	<item>
+	<label>Studio</label>
+	<!-- Studio -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Studio)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Studio))</visible>
+	</item>
+	<item>
+	<label>Country</label>
+	<!-- Country -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Country)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Country))+!Container.Content(episodes)</visible>
+	</item>
+	<item>
+	<label>Awards</label>
+	<!-- Awards -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Awards)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Awards))</visible>
+	</item>
+	<item>
+	<label>Duration</label>
+	<!-- Duration -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Duration.Hours),, $LOCALIZE[31877]] $INFO[Window(Home).Property(SkinHelper.ListItem.Duration.Minutes),, $LOCALIZE[31961]]</label2>
+	<onclick>noop</onclick>
+	<visible>Container.Content(movies)+!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Duration.Minutes))</visible>
+	</item>
+	<item>
+	<label>Duration</label>
+	<!-- Duration -->
+	<label2>$INFO[ListItem.Duration]</label2>
+	<onclick>noop</onclick>
+	<visible>Container.Content(episodes)+!String.IsEmpty(ListItem.Duration)</visible>
+	</item>
+	<item>
+	<label>Duration</label>
+	<!-- Duration -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.RuntimeExtended)]</label2>
+	<onclick>noop</onclick>
+	<visible>[Container.Content(albums)| Container.Content(songs)]+!String.IsEmpty(Window(Home).Property(SkinHelper.RuntimeExtended))</visible>
+	</item>
+	<item>
+	<label>Status</label>
+	<!-- Status -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Status)]  $INFO[Window(Home).Property(SkinHelper.ListItem.media_type)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Status))</visible>
+	</item>
+
+	<item>
+	<label>Total Seasons</label>
+	<!-- Seasons -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.totalSeasons)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.totalSeasons))</visible>
+	</item>
+	<item>
+	<label>NextEpisode.Title</label>
+	<!-- .NextEpisode.Title -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.NextEpisode.Title)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.NextEpisode.Title))+!Container.Content(episodes)</visible>
+	</item>
+	<item>
+	<label>NextEpisode.Label</label>
+	<!-- NextEpisode.Label -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.NextEpisode.Label)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.NextEpisode.Label))</visible>
+	</item>
+	<item>
+	<label>NextEpisode.Airdate</label>
+	<!-- LastEpisode.Airdate -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.NextEpisode.Airdate.long)]$INFO[Window(Home).Property(SkinHelper.ListItem.Network), on ]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.NextEpisode.Airdate.long))</visible>
+	</item>
+	<item>
+	<label>LastEpisode.Title</label>
+	<!-- LastEpisode.Title -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.LastEpisode.Title)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.LastEpisode.Title))+!Container.Content(episodes)</visible>
+	</item>
+	<item>
+	<label>LastEpisode.Airdate</label>
+	<!-- LastEpisode.Airdate -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.LastEpisode.Airdate)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.LastEpisode.Airdate))+!Container.Content(episodes)</visible>
+	</item>
+	<item>
+	<label>LastEpisode.GuestStars</label>
+	<!-- LastEpisode.GuestStars -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.GuestStars)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.GuestStars))+!Container.Content(episodes)</visible>
+	</item>
+	<item>
+	<label>Rating.IMDB</label>
+	<!-- Rating.IMDB -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Rating.IMDB)]$INFO[Window(Home).Property(SkinHelper.ListItem.Votes.IMDB),(, votes)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Rating.IMDB))+!Container.Content(episodes)</visible>
+	</item>
+	<item>
+	<label>Rating.TMDB</label>
+	<!-- Rating.TMDB -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Rating.TMDB)]$INFO[Window(Home).Property(SkinHelper.ListItem.Votes.TMDB),(, votes)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Rating.TMDB))+!Container.Content(episodes)</visible>
+	</item>
+	<item>
+	<label>Rating.TVDB</label>
+	<!-- Rating.TVDB -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Rating.TVDB)]$INFO[Window(Home).Property(SkinHelper.ListItem.Votes.TVDB),(, votes)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Rating.TVDB))+!Container.Content(episodes)</visible>
+	</item>
+	<item>
+	<label>Popularity</label>
+	<!-- Popularity -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Popularity)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Popularity))+!Container.Content(episodes)</visible>
+	</item>
+	<item>
+	<label>RT.Meter</label>
+	<!-- RottenTomatoes.Meter -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.Meter)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.RottenTomatoes.Meter))</visible>
+	</item>
+	<item>
+	<label>MetaCritic</label>
+	<!-- MetaCritic.Rating -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.MetaCritic.Rating)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.MetaCritic.Rating))</visible>
+	</item>
+	<item>
+	<label>IMDB.Top250</label>
+	<!-- IMDB.Top250 -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.IMDB.Top250)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.IMDB.Top250))+!Container.Content(episodes)</visible>
+	</item>
+	<item>
+	<label>Budget</label>
+	<!-- Budget.formatted -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Budget.formatted),$]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Budget.formatted))</visible>
+	</item>
+	<item>
+	<label>BoxOffice</label>
+	<!-- BoxOffice -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.BoxOffice)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.BoxOffice))</visible>
+	</item>
+	<item>
+	<label>TotalSeason</label>
+	<!-- TotalSeason -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.TotalSeason)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.TotalSeason))</visible>
+	</item>
+	<item>
+	<label>Revenue</label>
+	<!-- RottenTomatoes.Fresh -->
+	<label2>$INFO[Window(Home).Property(SkinHelper.ListItem.Revenue)]</label2>
+	<onclick>noop</onclick>
+	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Revenue))</visible>
+	</item>
                 </content>
+            </control>
+            <control type="image">
+                <left>308</left>
+                <top>120</top>
+                <height>585</height>
+                <width>3</width>
+                <texture>separator_v.png</texture>
+				<visible>!Container.Content(episodes)</visible>
             </control>
             <control type="image">
                 <left>308</left>
@@ -466,6 +511,15 @@
                 <height>345</height>
                 <width>3</width>
                 <texture>separator_v.png</texture>
+				<visible>Container.Content(episodes)</visible>
+            </control>
+            <control type="image">
+                <left>580</left>
+                <top>465</top>
+                <height>240</height>
+                <width>3</width>
+                <texture>separator_v.png</texture>
+				<visible>!Container.Content(episodes)</visible>
             </control>
             <control type="image">
                 <left>0</left>
@@ -475,10 +529,10 @@
                 <texture>separator.png</texture>
             </control>
             <control type="image">
-                <left>0</left>
+                <left>580</left>
                 <top>465</top>
                 <height>3</height>
-                <width>1480</width>
+                <width>900</width>
                 <texture>separator.png</texture>
                 <visible>!Container.Content(episodes)</visible>
             </control>
@@ -492,9 +546,9 @@
             </control>
             <control type="textbox">
                 <!-- Plot -->
-                <left>45</left>
+                <left>625</left>
                 <top>480</top>
-                <width>1402</width>
+                <width>822</width>
                 <height>200</height>
                 <align>justify</align>
                 <font>Font_18A</font>
@@ -505,9 +559,9 @@
             </control>
 			<control type="textbox">
                 <!-- Plot -->
-                <left>45</left>
+                <left>625</left>
                 <top>480</top>
-                <width>1402</width>
+                <width>822</width>
                 <height>200</height>
                 <align>justify</align>
                 <font>Font_18A</font>
