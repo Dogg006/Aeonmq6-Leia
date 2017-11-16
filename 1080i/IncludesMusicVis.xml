@@ -1764,8 +1764,9 @@
 	<left>140</left>
 	<top>100</top>
                 <control type="image">
-				<animation effect="slide" start="0,0" end="0,350" time="4600" delay="3500" tween="quadratic" easing="out" reversible="false" condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))">Visible</animation>
+				<animation effect="slide" start="0,0" end="0,350" time="4600" delay="3500" tween="quadratic" easing="out" reversible="false" condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))+String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.ThumbBack))">Conditionl</animation>
 				<animation effect="slide" start="0,350" end="0,0" time="4600" delay="3500" tween="quadratic" easing="out" reversible="false" condition="String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))">Hidden</animation>
+				<animation effect="slide" start="0,0" end="0,350" time="4600" delay="3500" tween="quadratic" easing="out" reversible="false" condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))+!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.ThumbBack))">Conditionl</animation>
 				<animation effect="fade" start="100" end="0" time="3600" tween="quadratic" easing="out" condition="String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))">Conditional</animation>
 				<animation effect="rotate" end="-360" center="auto" time="16000" delay="3500" loop="true" reversible="false" condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))+Integer.IsGreater(MusicPlayer.Time,13)">Conditional</animation>
                     <left>10</left>
@@ -1815,7 +1816,43 @@
                 <fadetime>6200</fadetime>
                 <texture diffuse="mo1.png" background="true">$INFO[Container(80036).ListItem.Icon]</texture>
                 <aspectratio align="left">stretch</aspectratio>
-            </control>-->
+            </control>
+	<control type="image">
+	<left>180</left>
+	<top>800</top>
+	<width>40</width>
+	<height>40</height>
+	<colordiffuse>$VAR[MusicVisColor]</colordiffuse>
+	<texture>led.png</texture>
+	</control>
+	<control type="label">
+	<left>200</left>
+	<top>800</top>
+	<width>300</width>
+	<height>40</height>
+	<font>Font_27</font>
+	<align>center</align>
+	<aligny>center</aligny>
+	<label>Color=$VAR[MusicVisColor]</label>
+	</control>
+	<control type="image">
+	<left>180</left>
+	<top>880</top>
+	<width>40</width>
+	<height>40</height>
+	<colordiffuse>$VAR[MusicVisCColor]</colordiffuse>
+	<texture>led.png</texture>
+	</control>
+	<control type="label">
+	<left>200</left>
+	<top>880</top>
+	<width>300</width>
+	<height>40</height>
+	<font>Font_27</font>
+	<align>center</align>
+	<aligny>center</aligny>
+	<label>CColor=$VAR[MusicVisCColor]</label>
+	</control>-->
 			<control type="image" id="7974">
 				<animation type="Conditional" condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.ThumbBack))+Control.IsVisible(7999)" reversible="true">
 					<effect type="rotatey" delay="0" center="360,0" start="170" end="0" time="4800" tween="quadratic" easing="out" />
@@ -1901,7 +1938,7 @@
 	<width>800</width>
 	<height>240</height>
 	<aspectratio align="center" aligny="center">keep</aspectratio>
-	<texture>$INFO[Window(Home).Property(SkinHelper.Player.Art.ClearLogo)]</texture>
+	<texture>$VAR[value_music_artistvis_clearartlogo]</texture>
 	<animation effect="fade" start="0" end="100" time="3600" delay="1500" tween="linear" reversible="false" condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.ClearLogo))">Visible</animation>
 	<animation effect="fade" start="100" end="0" time="200" delay="500" tween="linear" reversible="false" condition="String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.ClearLogo))">Hidden</animation>
 	<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.ClearLogo))</visible>
@@ -2268,6 +2305,30 @@
 					<imagepath fallback="$INFO[Window(Home).Property(SkinHelper.Player.Art.Banner)]" background="true">$INFO[Window(Home).Property(SkinHelper.Player.Art.Banners)]</imagepath>
 					<aspectratio align="center">keep</aspectratio>
 					<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Banners))</visible>
+				</control>
+				<control type="multiimage">
+				<animation effect="slide" start="-360,0" end="0,0" time="3200" delay="2000" reversible="false" condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.AlbumThumb))">Conditional</animation>
+					<left>180</left>
+					<top>280</top>
+					<width>400</width>
+					<height>300</height>
+					<fadetime>1200</fadetime>
+					<timeperimage>12000</timeperimage>
+					<imagepath diffuse="moz_line3.png">$INFO[Window(Home).Property(SkinHelper.Player.Art.ExtraFanart)]</imagepath>
+					<aspectratio align="center">keep</aspectratio>
+					<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.AlbumThumb))</visible>
+				</control>
+				<control type="multiimage">
+				<animation effect="slide" start="360,0" end="0,0" time="3200" delay="2000" reversible="false" condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.AlbumThumb))">Conditional</animation>
+					<left>180</left>
+					<top>280</top>
+					<width>400</width>
+					<height>300</height>
+					<fadetime>1200</fadetime>
+					<timeperimage>12000</timeperimage>
+					<imagepath diffuse="moz_line2.png">$INFO[Window(Home).Property(SkinHelper.Player.Art.ExtraFanart)]</imagepath>
+					<aspectratio align="center">keep</aspectratio>
+					<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.AlbumThumb))</visible>
 				</control>
 	</control>	
 	</include>
